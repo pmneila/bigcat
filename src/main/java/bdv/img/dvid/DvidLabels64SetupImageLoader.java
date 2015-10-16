@@ -19,6 +19,7 @@ import bdv.img.cache.VolatileGlobalCellCache.VolatileCellCache;
 import bdv.img.cache.VolatileImgCells;
 import bdv.util.ColorStream;
 import bdv.util.JsonHelper;
+import mpicbg.spim.data.generic.sequence.ImgLoaderHint;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -117,7 +118,7 @@ public class DvidLabels64SetupImageLoader
 	}
 
 	@Override
-	public RandomAccessibleInterval< ARGBType > getImage( final int timepointId, final int level )
+	public RandomAccessibleInterval< ARGBType > getImage( final int timepointId, final int level, ImgLoaderHint... hints )
 	{
 		final CachedCellImg< ARGBType, VolatileIntArray > img = prepareCachedImage( timepointId, setupId, level, LoadingStrategy.BLOCKING );
 		final ARGBType linkedType = new ARGBType( img );
@@ -126,7 +127,7 @@ public class DvidLabels64SetupImageLoader
 	}
 
 	@Override
-	public RandomAccessibleInterval< VolatileARGBType > getVolatileImage( final int timepointId, final int level )
+	public RandomAccessibleInterval< VolatileARGBType > getVolatileImage( final int timepointId, final int level, ImgLoaderHint... hints )
 	{
 		final CachedCellImg< VolatileARGBType, VolatileIntArray > img = prepareCachedImage( timepointId, setupId, level, LoadingStrategy.VOLATILE );
 		final VolatileARGBType linkedType = new VolatileARGBType( img );

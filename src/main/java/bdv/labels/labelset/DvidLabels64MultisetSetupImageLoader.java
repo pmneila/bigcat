@@ -18,6 +18,7 @@ import bdv.img.dvid.Labels64DataInstance;
 import bdv.util.JsonHelper;
 import bdv.util.MipmapTransforms;
 import bdv.util.dvid.DatasetKeyValue;
+import mpicbg.spim.data.generic.sequence.ImgLoaderHint;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -94,7 +95,7 @@ public class DvidLabels64MultisetSetupImageLoader
 	}
 
 	@Override
-	public RandomAccessibleInterval< SuperVoxelMultisetType > getImage( final int timepointId, final int level )
+	public RandomAccessibleInterval< SuperVoxelMultisetType > getImage( final int timepointId, final int level, ImgLoaderHint... hints )
 	{
 		final CachedCellImg< SuperVoxelMultisetType, VolatileSuperVoxelMultisetArray > img = prepareCachedImage( timepointId, setupId, level, LoadingStrategy.BLOCKING );
 		final SuperVoxelMultisetType linkedType = new SuperVoxelMultisetType( img );
@@ -103,7 +104,7 @@ public class DvidLabels64MultisetSetupImageLoader
 	}
 
 	@Override
-	public RandomAccessibleInterval< VolatileSuperVoxelMultisetType > getVolatileImage( final int timepointId, final int level )
+	public RandomAccessibleInterval< VolatileSuperVoxelMultisetType > getVolatileImage( final int timepointId, final int level, ImgLoaderHint... hints )
 	{
 		final CachedCellImg< VolatileSuperVoxelMultisetType, VolatileSuperVoxelMultisetArray > img = prepareCachedImage( timepointId, setupId, level, LoadingStrategy.BLOCKING );
 		final VolatileSuperVoxelMultisetType linkedType = new VolatileSuperVoxelMultisetType( img );

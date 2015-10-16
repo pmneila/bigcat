@@ -22,6 +22,7 @@ import bdv.img.cache.VolatileImgCells;
 import bdv.img.dvid.Multiscale2dDataInstance.Extended.Level;
 import bdv.util.ColorStream;
 import bdv.util.JsonHelper;
+import mpicbg.spim.data.generic.sequence.ImgLoaderHint;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
@@ -141,7 +142,7 @@ public class DvidMultiscale2dSetupImageLoader
 	}
 
 	@Override
-	public RandomAccessibleInterval< UnsignedByteType > getImage( final int timepointId, final int level )
+	public RandomAccessibleInterval< UnsignedByteType > getImage( final int timepointId, final int level, ImgLoaderHint... hints )
 	{
 		final CachedCellImg< UnsignedByteType, VolatileByteArray > img = prepareCachedImage( timepointId, setupId, level, LoadingStrategy.BLOCKING );
 		final UnsignedByteType linkedType = new UnsignedByteType( img );
@@ -150,7 +151,7 @@ public class DvidMultiscale2dSetupImageLoader
 	}
 
 	@Override
-	public RandomAccessibleInterval< VolatileUnsignedByteType > getVolatileImage( final int timepointId, final int level )
+	public RandomAccessibleInterval< VolatileUnsignedByteType > getVolatileImage( final int timepointId, final int level, ImgLoaderHint... hints )
 	{
 		final CachedCellImg< VolatileUnsignedByteType, VolatileByteArray > img = prepareCachedImage( timepointId, setupId, level, LoadingStrategy.VOLATILE );
 		final VolatileUnsignedByteType linkedType = new VolatileUnsignedByteType( img );

@@ -15,6 +15,7 @@ import bdv.img.cache.VolatileGlobalCellCache;
 import bdv.img.cache.VolatileGlobalCellCache.VolatileCellCache;
 import bdv.img.cache.VolatileImgCells;
 import bdv.labels.labelset.DvidLabels64MultisetSetupImageLoader.MultisetSource;
+import mpicbg.spim.data.generic.sequence.ImgLoaderHint;
 
 public class ARGBConvertedLabelsSetupImageLoader
 	extends AbstractViewerSetupImgLoader< ARGBType, VolatileARGBType >
@@ -38,7 +39,7 @@ public class ARGBConvertedLabelsSetupImageLoader
 	}
 
 	@Override
-	public RandomAccessibleInterval< ARGBType > getImage( final int timepointId, final int level )
+	public RandomAccessibleInterval< ARGBType > getImage( final int timepointId, final int level, ImgLoaderHint... hints )
 	{
 		final CachedCellImg< ARGBType, VolatileIntArray > img = prepareCachedImage( timepointId, setupId, level, LoadingStrategy.BLOCKING );
 		final ARGBType linkedType = new ARGBType( img );
@@ -47,7 +48,7 @@ public class ARGBConvertedLabelsSetupImageLoader
 	}
 
 	@Override
-	public RandomAccessibleInterval< VolatileARGBType > getVolatileImage( final int timepointId, final int level )
+	public RandomAccessibleInterval< VolatileARGBType > getVolatileImage( final int timepointId, final int level, ImgLoaderHint... hints )
 	{
 		final CachedCellImg< VolatileARGBType, VolatileIntArray > img = prepareCachedImage( timepointId, setupId, level, LoadingStrategy.VOLATILE );
 		final VolatileARGBType linkedType = new VolatileARGBType( img );
